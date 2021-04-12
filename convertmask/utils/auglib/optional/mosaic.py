@@ -606,8 +606,8 @@ def mosiac_img_no_reshape(imgs: list, heightFactor=0.5, widthFactor=0.5):
 
 
 def mosiacScript_no_reshape(imgs: list, xmls: list, savePath: str, flag=False):
-    heightFactor = random.uniform(0.1, 0.5)
-    widthFactor = random.uniform(0.1, 0.5)
+    heightFactor = random.uniform(0.25, 0.5)  # Originally it is (0.1, 0.5), i think 0.1 is too extreme
+    widthFactor = random.uniform(0.25, 0.5)
 
     img1, img2, img3, img4 = imgs[0], imgs[1], imgs[2], imgs[3]
 

@@ -23,7 +23,7 @@ if __name__ == "__main__":
     imgPath = BASE_DIR + os.sep + 'testMosiac.jpg'
     xmlPath = BASE_DIR + os.sep + 'multi_objs.xml'
     oriImg = io.imread(BASE_DIR + os.sep + 'multi_objs.jpg')
-
+    print(f'oriImg is {oriImg}')
     # mosicImg = mosiac_img([oriImg,],heightFactor=0.7,widthFactor=0.3)
     # io.imsave(imgPath,mosicImg)
 
