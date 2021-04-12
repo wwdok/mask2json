@@ -19,10 +19,24 @@ if __name__ == "__main__":
     no_process_num = len(img_list) % 4  # The last "no_process_num" files will not be processed
     print(f'no_process_num is {no_process_num}')
     for i in range(0, len(xml_list)-no_process_num, 4):
-        img1 = io.imread(os.path.join(IMG_DIR, img_list[i]))
-        img2 = io.imread(os.path.join(IMG_DIR, img_list[i+1]))
-        img3 = io.imread(os.path.join(IMG_DIR, img_list[i+2]))
-        img4 = io.imread(os.path.join(IMG_DIR, img_list[i+3]))
+        # print(f'Processing {img_list[i]}, {img_list[i+1]}, {img_list[i+2]}, {img_list[i+3]}')
+
+        # use exception to break the following inner loop. and continue the above outer loop
+        try:
+            img1 = io.imread(os.path.join(IMG_DIR, img_list[i]))
+            img2 = io.imread(os.path.join(IMG_DIR, img_list[i+1]))
+            img3 = io.imread(os.path.join(IMG_DIR, img_list[i+2]))
+            img4 = io.imread(os.path.join(IMG_DIR, img_list[i+3]))
+        except Exception:
+            print(f'found one image that is corrupted')
+            continue
+
+        try:
+            for img in [img1, img2, img3, img4]:
+                assert img.shape[2] == 3
+        except AssertionError:
+            print(f'found one image whose channel number != 3')
+            continue
 
         xml1 = os.path.join(XML_DIR, xml_list[i])
         xml2 = os.path.join(XML_DIR, xml_list[i+1])
